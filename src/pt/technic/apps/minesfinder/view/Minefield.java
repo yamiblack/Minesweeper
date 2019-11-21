@@ -29,7 +29,7 @@ public class Minefield {
 	private boolean firstPlay;
 	private boolean playerDefeated;
 	private boolean battleWin;
-	private boolean gameFinished;
+	public boolean gameFinished;
 	private boolean battleFinished;
 	private boolean battleDefeated;
 

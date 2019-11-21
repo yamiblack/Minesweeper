@@ -17,10 +17,7 @@ import java.util.Comparator;
 import java.util.StringJoiner;
 import java.util.concurrent.TimeUnit;
 
-import javax.swing.JLabel;
-import javax.swing.JMenuBar;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import pt.technic.apps.minesfinder.entity.Mode;
 import pt.technic.apps.minesfinder.entity.Player;
@@ -72,20 +69,12 @@ public class GameWindow extends javax.swing.JFrame {
 				updateButtonsStates();
 				if (minefield.isGameFinished()) {
 					gameStart = false; // �걹�굹硫� 寃뚯엫 �떆�옉 false �몴�떆
-					bgm.start();
-					bgm.close();
-					
 					mainbgm.close();
 					if (minefield.isPlayerDefeated()) {
-						int result = JOptionPane.showConfirmDialog(null, "Try again?", "Lost!",
-								JOptionPane.YES_NO_OPTION);
-						if(result == JOptionPane.YES_OPTION){
-							GameWindow retrywindow = new GameWindow(new Minefield(minefield.getWidth(),minefield.getHeight(),minefield.getNumMines()),mode);
-							retrywindow.setVisible(true);
-						}
-						else {
-							setDefaultCloseOperation(EXIT_ON_CLOSE);
-						}
+						bgm.start();
+						bgm.close();
+						JOptionPane.showMessageDialog(null, "Oh, a mine broke", "Lost!",
+								JOptionPane.INFORMATION_MESSAGE);
 
 					} else {
 						JOptionPane.showMessageDialog(null,
@@ -138,9 +127,19 @@ public class GameWindow extends javax.swing.JFrame {
 		KeyListener keyListener = new KeyListener() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-
+				if (e.getKeyCode() == KeyEvent.VK_R) {
+					int result = JOptionPane.showConfirmDialog(null, "Try again?", "Lost!",
+							JOptionPane.YES_NO_OPTION);
+					if (result == JOptionPane.YES_OPTION) {
+						minefield.gameFinished=true;
+						gameStart = false; // �걹�굹硫� 寃뚯엫 �떆�옉 false �몴�떆
+						mainbgm.close();
+						setVisible(false);
+						GameWindow retrywindow = new GameWindow(new Minefield(minefield.getWidth(), minefield.getHeight(), minefield.getNumMines()), mode);
+						retrywindow.setVisible(true);
+					}
+				}
 			}
-
 			@Override
 			public void keyTyped(KeyEvent ke) {
 			}
@@ -157,7 +156,6 @@ public class GameWindow extends javax.swing.JFrame {
 				buttons[x][y] = new ButtonMinefield(x, y, 2);
 				buttons[x][y].addActionListener(action);
 				buttons[x][y].addMouseListener(mouseListener);
-				buttons[x][y].addKeyListener(keyListener);
 				buttons[x][y].addKeyListener(keyListener);
 				getContentPane().add(buttons[x][y]);
 			}
