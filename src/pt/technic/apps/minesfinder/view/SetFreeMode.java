@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import pt.technic.apps.minesfinder.entity.Mode;
+import pt.technic.apps.minesfinder.util.Bgm;
 
 public class SetFreeMode extends JFrame {
 
@@ -34,7 +35,6 @@ public class SetFreeMode extends JFrame {
 
 	public SetFreeMode() {
 		JButton btn = new JButton("OK");
-
 		setTitle("Set your own game");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -61,6 +61,7 @@ public class SetFreeMode extends JFrame {
 		setSize(300, 150);
 		setResizable(false);
 		setVisible(true);
+		
 	}
 
 	public class FreeMode implements ActionListener {
