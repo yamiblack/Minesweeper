@@ -38,8 +38,8 @@ public class GameWindow extends javax.swing.JFrame {
 	private Minefield minefield;
 	private Player record = new Player();
 	private Mode mode;
-	private final int[] sec = { 0 };// �떆媛� �꽑�뼵
-	private boolean gameStart = false; // 寃뚯엫�씠 �떆�옉 �릺�뿀�뒗吏� �뙋蹂�
+	private final int[] sec = { 0 };
+	private boolean gameStart = false; 
 
 	/**
 	 * Creates new form GameWindow
@@ -70,25 +70,33 @@ public class GameWindow extends javax.swing.JFrame {
 				int y = botao.getLine();
 				minefield.revealGrid(x, y);
 				updateButtonsStates();
-				if (minefield.isGameFinished()) {
-					gameStart = false; // �걹�굹硫� 寃뚯엫 �떆�옉 false �몴�떆
-					mainbgm.close();
-					if (minefield.isPlayerDefeated()) {
-						bgm.start();
-						bgm.close();
-						JOptionPane.showMessageDialog(null, "Oh, a mine broke", "Lost!",
-								JOptionPane.INFORMATION_MESSAGE);
 
-					} else {
-						JOptionPane.showMessageDialog(null,
-								"Congratulations. You managed to discover all the mines in " + (sec[0]) + " seconds",
-								"victory", JOptionPane.INFORMATION_MESSAGE);
+					if (minefield.isGameFinished()) {
+						gameStart = false; // �걹�굹硫� 寃뚯엫 �떆�옉 false �몴�떆
+						mainbgm.close();
+						
+						try{
+						if (minefield.isPlayerDefeated()) {
+							bgm.start();
+							bgm.close();
+							JOptionPane.showMessageDialog(null, "Oh, a mine broke", "Lost!",
+									JOptionPane.INFORMATION_MESSAGE);
 
-						saveScore();
+						} else {
+							JOptionPane
+									.showMessageDialog(
+											null, "Congratulations. You managed to discover all the mines in "
+													+ (sec[0]) + " seconds",
+											"victory", JOptionPane.INFORMATION_MESSAGE);
 
-					}
-					setVisible(false);
-				}
+							saveScore();
+
+						}
+					}catch (NullPointerException npe) {
+						}
+
+				setVisible(false);
+			}
 			}
 		};
 
@@ -131,14 +139,15 @@ public class GameWindow extends javax.swing.JFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_R) {
-					int result = JOptionPane.showConfirmDialog(null, "Try again?", "Lost!",
-							JOptionPane.YES_NO_OPTION);
+					int result = JOptionPane.showConfirmDialog(null, "Try again?", "Lost!", JOptionPane.YES_NO_OPTION);
 					if (result == JOptionPane.YES_OPTION) {
-						minefield.gameFinished=true;
+						minefield.gameFinished = true;
 						gameStart = false; // �걹�굹硫� 寃뚯엫 �떆�옉 false �몴�떆
 						mainbgm.close();
 						setVisible(false);
-						GameWindow retrywindow = new GameWindow(new Minefield(minefield.getWidth(), minefield.getHeight(), minefield.getNumMines()), mode);
+						GameWindow retrywindow = new GameWindow(
+								new Minefield(minefield.getWidth(), minefield.getHeight(), minefield.getNumMines()),
+								mode);
 						retrywindow.setVisible(true);
 					}
 				}
@@ -176,9 +185,9 @@ public class GameWindow extends javax.swing.JFrame {
 	private void initStatusBar() {
 		JMenuBar statusBar = new JMenuBar(); // �긽�깭諛� �깮�꽦
 		JPanel panel = new JPanel(); // �뙣�꼸 �깮�꽦
-		JLabel timeLabel = new JLabel(
-				"Time : " + String.valueOf(sec[0]) + " /  Mark Chances : " + this.minefield.getNumMarkChances()); // �젅�씠釉�
-																													// �깮�꽦
+		JLabel timeLabel = new JLabel("Time : " + String.valueOf(sec[0]) + " /  Mark Chances : "
+				+ this.minefield.getNumMarkChances() + " (Press 'R' to Restart)"); // �젅�씠釉�
+		// �깮�꽦
 
 		ThreadPool.timeThreadPool.submit(() -> {
 			while (gameStart) {
@@ -186,7 +195,7 @@ public class GameWindow extends javax.swing.JFrame {
 				try {
 					TimeUnit.SECONDS.sleep(1); // 1珥� �돩怨�
 					timeLabel.setText("Time : " + String.valueOf(sec[0]) + " / Mark Chances : "
-							+ this.minefield.getNumMarkChances()); // �젅�씠釉� �깮�꽦
+							+ this.minefield.getNumMarkChances() + " (Press 'R' to Restart)"); // �젅�씠釉� �깮�꽦
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

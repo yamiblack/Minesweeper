@@ -68,6 +68,7 @@ public class SetFreeMode extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			dispose();
 			int numOfRow = parseInt(row.getText());
 			int numOfCol = parseInt(col.getText());
 			int numOfMines = parseInt(mines.getText());
