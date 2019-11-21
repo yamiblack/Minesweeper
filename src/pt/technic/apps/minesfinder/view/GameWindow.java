@@ -72,7 +72,7 @@ public class GameWindow extends javax.swing.JFrame {
 				updateButtonsStates();
 
 					if (minefield.isGameFinished()) {
-						gameStart = false; // �걹�굹硫� 寃뚯엫 �떆�옉 false �몴�떆
+						gameStart = false; 
 						mainbgm.close();
 						
 						try{
