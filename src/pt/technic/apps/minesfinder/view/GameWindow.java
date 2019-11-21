@@ -76,6 +76,8 @@ public class GameWindow extends javax.swing.JFrame {
 					bgm.close();
 					
 					mainbgm.close();
+					
+					try{
 					if (minefield.isPlayerDefeated()) {
 						int result = JOptionPane.showConfirmDialog(null, "Try again?", "Lost!",
 								JOptionPane.YES_NO_OPTION);
@@ -95,6 +97,28 @@ public class GameWindow extends javax.swing.JFrame {
 						saveScore();
 
 					}
+					}catch (NullPointerException npe) {
+						
+					}
+//					if (minefield.isPlayerDefeated()) {
+//						int result = JOptionPane.showConfirmDialog(null, "Try again?", "Lost!",
+//								JOptionPane.YES_NO_OPTION);
+//						if(result == JOptionPane.YES_OPTION){
+//							GameWindow retrywindow = new GameWindow(new Minefield(minefield.getWidth(),minefield.getHeight(),minefield.getNumMines()),mode);
+//							retrywindow.setVisible(true);
+//						}
+//						else {
+//							setDefaultCloseOperation(EXIT_ON_CLOSE);
+//						}
+//
+//					} else {
+//						JOptionPane.showMessageDialog(null,
+//								"Congratulations. You managed to discover all the mines in " + (sec[0]) + " seconds",
+//								"victory", JOptionPane.INFORMATION_MESSAGE);
+//
+//						saveScore();
+//
+//					}
 					setVisible(false);
 				}
 			}

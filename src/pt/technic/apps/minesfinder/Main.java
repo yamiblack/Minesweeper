@@ -26,6 +26,7 @@ import pt.technic.apps.minesfinder.view.BattleMode;
 import pt.technic.apps.minesfinder.view.GameWindow;
 import pt.technic.apps.minesfinder.view.Minefield;
 import pt.technic.apps.minesfinder.view.RankingBoard;
+import pt.technic.apps.minesfinder.view.SetFreeMode;
 
 /**
  *
@@ -82,6 +83,11 @@ public class Main extends JFrame {
 		JButton btnRankingBoard = new JButton("Ranking Board");
 		getContentPane().add(btnRankingBoard, BorderLayout.WEST); // 왼쪽에 "Ranking Board" 버튼 추가
 		btnRankingBoard.addActionListener(e -> new RankingBoard());
+		
+		JButton btnFreeMode = new JButton("Free");
+		getContentPane().add(btnFreeMode, BorderLayout.EAST);
+		btnFreeMode.addActionListener(e -> new SetFreeMode());
+		
 		panelBtns.setLayout(new GridLayout(2, 0));
 
 		setBtn("Easy", e -> new GameWindow(new Minefield(9, 9, 10), Mode.EASY).setVisible(true), panelBtns, true);
