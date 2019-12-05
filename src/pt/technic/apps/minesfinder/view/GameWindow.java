@@ -39,7 +39,7 @@ public class GameWindow extends javax.swing.JFrame {
 	private Player record = new Player();
 	private Mode mode;
 	private final int[] sec = { 0 };
-	private boolean gameStart = false; 
+	private boolean gameStart = false;
 
 	/**
 	 * Creates new form GameWindow
@@ -141,8 +141,8 @@ public class GameWindow extends javax.swing.JFrame {
 				if (e.getKeyCode() == KeyEvent.VK_R) {
 					int result = JOptionPane.showConfirmDialog(null, "Try again?", "Lost!", JOptionPane.YES_NO_OPTION);
 					if (result == JOptionPane.YES_OPTION) {
-						minefield.gameFinished = true;
-						gameStart = false; // �걹�굹硫� 寃뚯엫 �떆�옉 false �몴�떆
+						minefield.setGameFinished(true);
+						gameStart = false;
 						mainbgm.close();
 						setVisible(false);
 						GameWindow retrywindow = new GameWindow(

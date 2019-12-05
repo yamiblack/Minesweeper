@@ -8,7 +8,9 @@ import javax.swing.JButton;
  * @author Gabriel Massadas
  */
 public class ButtonMinefield extends JButton {
-    private int state, col, line;
+    private int state;
+    private int col;
+    private int line;
 
     public ButtonMinefield(int col, int line,int i) {
         this.col = col;
@@ -50,7 +52,7 @@ public class ButtonMinefield extends JButton {
                 setText("*");
                 setBackground(Color.orange);
                 break;
-            case Minefield.PORTION:
+            case Minefield.PORTIONED:
                 setText("#");
                 setBackground(Color.PINK);
                 break;

@@ -14,7 +14,7 @@ public class Minefield {
 	public static final int QUESTION = 10;
 	public static final int MARKED = 11;
 	public static final int BUSTED = 12;
-	public static final int PORTION = 13;
+	public static final int PORTIONED = 13;
 
 	private boolean[][] mines;
 	private int[][] states;
@@ -29,7 +29,7 @@ public class Minefield {
 	private boolean firstPlay;
 	private boolean playerDefeated;
 	private boolean battleWin;
-	public boolean gameFinished;
+	private boolean gameFinished;
 	private boolean battleFinished;
 	private boolean battleDefeated;
 
@@ -99,12 +99,11 @@ public class Minefield {
 			if (checkVictory()) {
 				gameFinished = true;
 				playerDefeated = false;
-				return;
 			}
 		}
 	}
 
-	public void BattlerevealGrid(int x, int y) {
+	public void battleRevealGrid(int x, int y) {
 		if (states[x][y] == COVERED && !battleFinished) {
 			if (firstPlay) {
 				firstPlay = false;
@@ -116,7 +115,7 @@ public class Minefield {
 			states[x][y] = minesAround;
 
 			if (minesAround == 0) {
-				BattleGridNeighbors(x, y);
+				battleGridNeighbors(x, y);
 			}
 
 			if (mines[x][y]) {
@@ -127,11 +126,10 @@ public class Minefield {
 				if (leftmine == 0) {
 					battleWin = true;
 					battleFinished = true;
-					return;
 				}
 			} else if (portion[x][y]) {
 				life++;
-				states[x][y] = PORTION;
+				states[x][y] =PORTIONED;
 			}
 
 			else if (!mines[x][y]) {
@@ -152,7 +150,7 @@ public class Minefield {
 		}
 	}
 
-	private void BattleGridNeighbors(int x, int y) {
+	private void battleGridNeighbors(int x, int y) {
 		for (int col = Math.max(0, x - 1); col < Math.min(width, x + 2); col++) {
 			for (int line = Math.max(0, y - 1); line < Math.min(height, y + 2); line++)
 				revealGrid1(col, line);
@@ -172,17 +170,15 @@ public class Minefield {
 			if (minesAround == 0) {
 				revealGrid1(x, y);
 			} else {
-				BattlerevealGrid(x, y);
+				battleRevealGrid(x, y);
 			}
 		}
 	}
 
 	public void setMineMarked(int x, int y) {
-		if (numMarkChances > 0) {
-			if (states[x][y] == COVERED || states[x][y] == QUESTION) {
+		if (numMarkChances > 0 && (states[x][y] == COVERED || states[x][y] == QUESTION)) {
 				states[x][y] = MARKED;
 				numMarkChances -= 1;// 마크 표시되면 찬스-1
-			}
 		}
 	}
 
@@ -305,4 +301,7 @@ public class Minefield {
 		return numMarkChances;
 	}
 
+	public void setGameFinished(boolean bool){ gameFinished =bool;}
+
 }
+

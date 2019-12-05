@@ -6,10 +6,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -44,10 +41,8 @@ public class Main extends JFrame {
 		EventQueue.invokeLater(() -> new Main().setVisible(true));
 	}
 
-	private JLabel Records = new JLabel();
 	private JLabel panelTitle = new JLabel();
 	private JPanel panelBtns = new JPanel();
-	private JPanel panelRecords = new JPanel();
 
 	public Main() {
 		initComponents();
@@ -90,7 +85,7 @@ public class Main extends JFrame {
 		
 		panelBtns.setLayout(new GridLayout(2, 0));
 
-		setBtn("Easy", e -> new GameWindow(new Minefield(9, 9, 10), Mode.EASY).setVisible(true), panelBtns, true);
+		setBtn("Easy", e -> new GameWindow(new Minefield(2, 2, 1), Mode.EASY).setVisible(true), panelBtns, true);
 		setBtn("Medium", e -> new GameWindow(new Minefield(16, 16, 40), Mode.MED).setVisible(true), panelBtns, true);
 		setBtn("Hard", e -> new GameWindow(new Minefield(16, 30, 90), Mode.HARD).setVisible(true), panelBtns, true);
 		setBtn("Battle", e -> new BattleMode(new Minefield(9, 9, 10), new Minefield(9, 9, 10)).setVisible(true),
