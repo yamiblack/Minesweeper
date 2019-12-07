@@ -1,20 +1,11 @@
 package pt.technic.apps.minesfinder.view;
 
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.FileWriter;
-import java.util.ArrayList;
+import java.awt.event.*;
+
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.StringJoiner;
+
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.JLabel;
@@ -107,11 +98,11 @@ public class GameWindow extends javax.swing.JFrame {
 					ButtonMinefield botao = (ButtonMinefield) e.getSource();
 					int x = botao.getCol();
 					int y = botao.getLine();
-					if (minefield.getGridState(x, y) == minefield.COVERED) {
+					if (minefield.getGridState(x, y) == Minefield.COVERED) {
 						minefield.setMineMarked(x, y);
-					} else if (minefield.getGridState(x, y) == minefield.MARKED) {
+					} else if (minefield.getGridState(x, y) == Minefield.MARKED) {
 						minefield.setMineQuestion(x, y);
-					} else if (minefield.getGridState(x, y) == minefield.QUESTION) {
+					} else if (minefield.getGridState(x, y) == Minefield.QUESTION) {
 						minefield.setMineCovered(x, y);
 					}
 					updateButtonsStates();
@@ -120,18 +111,22 @@ public class GameWindow extends javax.swing.JFrame {
 
 			@Override
 			public void mouseClicked(MouseEvent me) {
+				throw new UnsupportedOperationException();
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent me) {
+				throw new UnsupportedOperationException();
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent me) {
+				throw new UnsupportedOperationException();
 			}
 
 			@Override
 			public void mouseExited(MouseEvent me) {
+				throw new UnsupportedOperationException();
 			}
 		};
 
@@ -139,7 +134,8 @@ public class GameWindow extends javax.swing.JFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_R) {
-					int result = JOptionPane.showConfirmDialog(null, "Try again?", "Lost!", JOptionPane.YES_NO_OPTION);
+					int result = JOptionPane.showConfirmDialog
+							(null, "Try again?", "Lost!", JOptionPane.YES_NO_OPTION);
 					if (result == JOptionPane.YES_OPTION) {
 						minefield.setGameFinished(true);
 						gameStart = false;
@@ -155,11 +151,12 @@ public class GameWindow extends javax.swing.JFrame {
 
 			@Override
 			public void keyTyped(KeyEvent ke) {
+				throw new UnsupportedOperationException();
 			}
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-
+				throw new UnsupportedOperationException();
 			}
 		};
 
@@ -174,6 +171,7 @@ public class GameWindow extends javax.swing.JFrame {
 			}
 		}
 		addWindowListener(new WindowAdapter() {
+			@Override
 			public void windowClosing(WindowEvent e) {
 				gameStart = false;
 				mainbgm.close();
@@ -187,7 +185,6 @@ public class GameWindow extends javax.swing.JFrame {
 		JPanel panel = new JPanel(); // �뙣�꼸 �깮�꽦
 		JLabel timeLabel = new JLabel("Time : " + String.valueOf(sec[0]) + " /  Mark Chances : "
 				+ this.minefield.getNumMarkChances() + " (Press 'R' to Restart)"); // �젅�씠釉�
-		// �깮�꽦
 
 		ThreadPool.timeThreadPool.submit(() -> {
 			while (gameStart) {
@@ -226,7 +223,7 @@ public class GameWindow extends javax.swing.JFrame {
 		if (index >= 0) {
 			String name = JOptionPane.showInputDialog("Enter your name");
 			if (name != "") {
-				record.setRecord(name.replaceAll(",", ""), sec[0]);
+				record.setRecord(name.replace(",", ""), sec[0]);
 				PlayerCache.getInstance().getListByLevel(mode).add(record);
 				Collections.sort(PlayerCache.getInstance().getListByLevel(mode), new Comparator<Player>() {
 
