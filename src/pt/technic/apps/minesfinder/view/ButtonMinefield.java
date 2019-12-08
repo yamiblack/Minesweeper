@@ -52,7 +52,7 @@ public class ButtonMinefield extends JButton {
                 setText("*");
                 setBackground(Color.orange);
                 break;
-            case Minefield.PORTIONED:
+            case Minefield.POTIONED:
                 setText("#");
                 setBackground(Color.PINK);
                 break;

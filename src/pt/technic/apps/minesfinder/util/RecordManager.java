@@ -1,16 +1,16 @@
 package pt.technic.apps.minesfinder.util;
 
+import pt.technic.apps.minesfinder.Main;
+import pt.technic.apps.minesfinder.entity.Mode;
+import pt.technic.apps.minesfinder.entity.Player;
+import pt.technic.apps.minesfinder.entity.PlayerCache;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.StringJoiner;
-
-import pt.technic.apps.minesfinder.Main;
-import pt.technic.apps.minesfinder.entity.Mode;
-import pt.technic.apps.minesfinder.entity.Player;
-import pt.technic.apps.minesfinder.entity.PlayerCache;
 
 public class RecordManager {
 
@@ -46,8 +46,8 @@ public class RecordManager {
 					}
 				}
 
-			} catch (Throwable t) {
-				t.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		} else {
 			writeFile();
@@ -75,7 +75,7 @@ public class RecordManager {
 					playerList.add(player);
 				}
 			} catch (Exception e) {
-
+				e.printStackTrace();
 			}
 			if (i == 0)
 				PlayerCache.getInstance().setListByLevel(Mode.EASY, playerList);
@@ -120,7 +120,10 @@ public class RecordManager {
 	}
 
 	static class LazyHolder {
-		// the best idom of singleton pattern
 		static final RecordManager instance = new RecordManager();
+
+		private LazyHolder() {
+			throw new IllegalStateException("Utility class");
+		}
 	}
 }

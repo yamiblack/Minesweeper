@@ -3,8 +3,6 @@ package pt.technic.apps.minesfinder.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import pt.technic.apps.minesfinder.util.RecordManager;
-
 public class PlayerCache {
 	
 	

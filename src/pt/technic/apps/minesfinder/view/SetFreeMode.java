@@ -17,7 +17,7 @@ public class SetFreeMode extends JFrame {
         try {
             return Integer.parseInt(str);
         } catch (NumberFormatException e) {
-
+            e.printStackTrace();
         }
         return 0;
     }

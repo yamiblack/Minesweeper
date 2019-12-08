@@ -10,7 +10,7 @@ public class Minefield {
 	public static final int QUESTION = 10;
 	public static final int MARKED = 11;
 	public static final int BUSTED = 12;
-	public static final int potionED = 13;
+	public static final int POTIONED = 13;
 
 	private boolean[][] mines;
 	private int[][] states;
@@ -125,7 +125,7 @@ public class Minefield {
 				}
 			} else if (potion[x][y]) {
 				life++;
-				states[x][y] =potionED;
+				states[x][y] = POTIONED;
 			}
 
 			else if (!mines[x][y]) {
