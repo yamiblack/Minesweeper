@@ -74,6 +74,7 @@ public class GameWindow extends javax.swing.JFrame {
 
 						}
 					}catch (NullPointerException npe) {
+							npe.printStackTrace();
 						}
 
 				setVisible(false);

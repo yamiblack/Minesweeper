@@ -9,10 +9,6 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-/**
- *
- * @author Gabriel Massadas
- */
 public class Main extends JFrame {
 
 	public static final String FILE_NAME = System.getProperty("user.home") + File.separator + "minesfinder.txt";
