@@ -238,14 +238,10 @@ public class BattleMode extends javax.swing.JFrame {
 
 				if (minefield1p.isBattleWin()) {
 					battleBgm.close();
-					JOptionPane.showMessageDialog(null, "COGRATULATIONS, WIN! Player1 Find All Mines", "WIN!",
-							JOptionPane.INFORMATION_MESSAGE);
-					setVisible(false);
+					setVictoryMessage("Player1");
 				} else if (minefield1p.isBattleDefeated()) {
 					gameDefeatEffect(x,y);
-					JOptionPane.showMessageDialog(null, "Player2 Win! Player1 try harder", "Player2 win",
-							JOptionPane.INFORMATION_MESSAGE);
-					setVisible(false);
+					setDefeatMessage("Player2","Player1");
 				}
 
 			}
@@ -259,19 +255,27 @@ public class BattleMode extends javax.swing.JFrame {
 				gameStart = false;
 				if (minefield2p.isBattleWin()) {
 					battleBgm.close();
-					JOptionPane.showMessageDialog(null, "COGRATULATIONS, WIN! Player2 Find All Mines", "WIN!",
-							JOptionPane.INFORMATION_MESSAGE);
-					setVisible(false);
+					setVictoryMessage("Player2");
 				} else if (minefield2p.isBattleDefeated()) {
 					gameDefeatEffect(x,y);
-					JOptionPane.showMessageDialog(null, "Player1 Win! Player2 try harder", "Player1 win",
-							JOptionPane.INFORMATION_MESSAGE);
-
-					setVisible(false);
+					setDefeatMessage("Player1","Player2");
 				}
 			}
 
 		}
+	}
+
+	private void setVictoryMessage(String player){
+		JOptionPane.showMessageDialog(null, "COGRATULATIONS, WIN! " + player + " Find All Mines ", " WIN!",
+				JOptionPane.INFORMATION_MESSAGE);
+		setVisible(false);
+	}
+
+	private void setDefeatMessage(String player1, String player2){
+		JOptionPane.showMessageDialog(null, player1 + " Win! " + player2 + " try harder ", player1 + " win",
+				JOptionPane.INFORMATION_MESSAGE);
+
+		setVisible(false);
 	}
 	private void gameDefeatEffect(int x, int y) {
 		battleBgm.close();
