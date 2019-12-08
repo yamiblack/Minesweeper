@@ -1,12 +1,9 @@
 package pt.technic.apps.minesfinder.view;
 
-import java.awt.Color;
-import javax.swing.JButton;
+import javax.swing.*;
+import java.awt.*;
 
-/**
- *
- * @author Gabriel Massadas
- */
+
 public class ButtonMinefield extends JButton {
     private int state;
     private int col;

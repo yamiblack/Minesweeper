@@ -1,18 +1,5 @@
 package pt.technic.apps.minesfinder.view;
 
-import java.awt.GridLayout;
-import java.awt.event.*;
-
-import java.util.Collections;
-import java.util.Comparator;
-
-import java.util.concurrent.TimeUnit;
-
-import javax.swing.JLabel;
-import javax.swing.JMenuBar;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
 import pt.technic.apps.minesfinder.entity.Mode;
 import pt.technic.apps.minesfinder.entity.Player;
 import pt.technic.apps.minesfinder.entity.PlayerCache;
@@ -20,11 +7,15 @@ import pt.technic.apps.minesfinder.util.Bgm;
 import pt.technic.apps.minesfinder.util.RecordManager;
 import pt.technic.apps.minesfinder.util.ThreadPool;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.concurrent.TimeUnit;
 
-/**
- *
- * @author Gabriel Massadas
- */
+
+
 public class GameWindow extends javax.swing.JFrame {
 	private ButtonMinefield[][] buttons;
 	private Minefield minefield;
@@ -33,9 +24,7 @@ public class GameWindow extends javax.swing.JFrame {
 	private final int[] sec = { 0 };
 	private boolean gameStart = false;
 
-	/**
-	 * Creates new form GameWindow
-	 */
+
 	private Bgm bgm = new Bgm("boom.mp3", false);
 	private Bgm mainbgm = new Bgm("jelda.mp3", true);
 
