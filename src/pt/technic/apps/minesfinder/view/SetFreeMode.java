@@ -13,6 +13,8 @@ public class SetFreeMode extends JFrame {
     JTextField col = new JTextField(2);
     JTextField mines = new JTextField(2);
 
+
+
     public int parseInt(String str) {
         try {
             return Integer.parseInt(str);
