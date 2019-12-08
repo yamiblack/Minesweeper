@@ -25,7 +25,7 @@ public class SetFreeMode {
 
     public SetFreeMode() {
 
-        JFrame frame = new JFrame("Hello Program");
+        JFrame frame = new JFrame("Set your own game!");
         frame.setPreferredSize(new Dimension(300, 150));
 
         JButton okBtn = new JButton("OK");
@@ -52,7 +52,6 @@ public class SetFreeMode {
 
         frame.pack();
         frame.setVisible(true);
-
     }
 
     public class FreeMode implements ActionListener {
