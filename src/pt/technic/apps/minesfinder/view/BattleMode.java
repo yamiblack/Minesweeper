@@ -75,19 +75,7 @@ public class BattleMode extends javax.swing.JFrame {
 
 					case KeyEvent.VK_F:
 						if (e.getKeyCode() == KeyEvent.VK_F && (minefield1p.getGridState(x, y) == Minefield.COVERED) && !minefield1p.isBattleDefeated()) {
-							battleBtn(x, y, 0);
-							buttons2p[x][y].setFocusable(true);
-							buttons2p[x][y].requestFocus();
-							for (x = 0; x < minefield1p.getWidth(); x++) {
-								for (y = 0; y < minefield1p.getHeight(); y++) {
-									buttons1p[x][y].setFocusable(false);
-								}
-							}
-							for (x = 0; x < minefield1p.getWidth(); x++) {
-								for (y = 0; y < minefield1p.getHeight(); y++) {
-									buttons2p[x][y].setFocusable(true);
-								}
-							}
+							find(x,y,0);
 						}
 						break;
 					case KeyEvent.VK_UP:
@@ -108,19 +96,7 @@ public class BattleMode extends javax.swing.JFrame {
 						break;
 					case KeyEvent.VK_ENTER:
 						if ((minefield2p.getGridState(x, y) == Minefield.COVERED) && !minefield2p.isBattleDefeated()) {
-							battleBtn(x, y, 1);
-							buttons1p[x][y].setFocusable(true);
-							buttons1p[x][y].requestFocus();
-							for (x = 0; x < minefield1p.getWidth(); x++) {
-								for (y = 0; y < minefield1p.getHeight(); y++) {
-									buttons2p[x][y].setFocusable(false);
-								}
-							}
-							for (x = 0; x < minefield1p.getWidth(); x++) {
-								for (y = 0; y < minefield1p.getHeight(); y++) {
-									buttons1p[x][y].setFocusable(true);
-								}
-							}
+							find(x,y,1);
 						}
 						break;
 					default:
@@ -149,6 +125,7 @@ public class BattleMode extends javax.swing.JFrame {
 				buttons2p[x][y].addKeyListener(keyListener);
 			}
 		}
+
 		battleWindow(buttons1p,buttons2p);
 
 		addWindowListener(new WindowAdapter() {
@@ -160,8 +137,30 @@ public class BattleMode extends javax.swing.JFrame {
 		});
 
 	}
+	private void find(int x, int y, int i) {
+		if (i == 0) {
+			battleBtn(x, y, 0);
+			buttons2p[x][y].requestFocus();
+				for (x = 0; x < minefield1p.getWidth(); x++) {
+					for (y = 0; y < minefield1p.getHeight(); y++) {
+						buttons1p[x][y].setFocusable(false);
+						buttons2p[x][y].setFocusable(true);
+					}
+				}
+		}
+		else{
+			battleBtn(x, y, 1);
+			buttons1p[x][y].requestFocus();
+			for (x = 0; x < minefield1p.getWidth(); x++) {
+				for (y = 0; y < minefield1p.getHeight(); y++) {
+					buttons2p[x][y].setFocusable(false);
+					buttons1p[x][y].setFocusable(true);
+				}
+			}
+		}
+	}
 
-	public void battleWindow(ButtonMinefield[][] buttons1p, ButtonMinefield[][] buttons2p){
+	private void battleWindow(ButtonMinefield[][] buttons1p, ButtonMinefield[][] buttons2p){
 
 		gameWindow.setLayout(new FlowLayout());
 		gameWindow.setPreferredSize(new Dimension(1010, 560));
@@ -221,7 +220,7 @@ public class BattleMode extends javax.swing.JFrame {
 	private void battleBtn(int x, int y, int i) {
 		if (i == 0) {
 			minefield1p.battleRevealGrid(x, y);
-			updateButtonsStates();
+			updateButtonsStates1p();
 			if (minefield1p.isBattleFinished()) {
 				gameStart = false;
 
@@ -242,7 +241,7 @@ public class BattleMode extends javax.swing.JFrame {
 
 		else {
 			minefield2p.battleRevealGrid(x, y);
-			updateButtonsStates2();
+			updateButtonsStates2p();
 
 			if (minefield2p.isBattleFinished()) {
 				gameStart = false;
@@ -282,7 +281,8 @@ public class BattleMode extends javax.swing.JFrame {
 			}
 		}
 	}
-	private void updateButtonsStates() {
+
+	private void updateButtonsStates1p() {
 		for (int x = 0; x < minefield1p.getWidth(); x++) {
 			for (int y = 0; y < minefield1p.getHeight(); y++) {
 				buttons1p[x][y].setEstado(minefield1p.getGridState(x, y));
@@ -290,7 +290,7 @@ public class BattleMode extends javax.swing.JFrame {
 		}
 	}
 
-	private void updateButtonsStates2() {
+	private void updateButtonsStates2p() {
 		for (int x = 0; x < minefield2p.getWidth(); x++) {
 			for (int y = 0; y < minefield2p.getHeight(); y++) {
 				buttons2p[x][y].setEstado(minefield2p.getGridState(x, y));

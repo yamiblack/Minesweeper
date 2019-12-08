@@ -93,7 +93,7 @@ public class Minefield {
 			states[x][y] = minesAround;
 
 			if (minesAround == 0) {
-				revealGridNeighbors(x, y);
+				revealGridNeighbors(x, y,0);
 			}
 
 			if (checkVictory()) {
@@ -108,14 +108,14 @@ public class Minefield {
 			if (firstPlay) {
 				firstPlay = false;
 				placeMines(x, y);
-				placePortion(x, y);
+				placePortion();
 			}
 
 			int minesAround = countMinesAround(x, y);
 			states[x][y] = minesAround;
 
 			if (minesAround == 0) {
-				battleGridNeighbors(x, y);
+				revealGridNeighbors(x, y,1);
 			}
 
 			if (mines[x][y]) {
@@ -143,32 +143,33 @@ public class Minefield {
 		}
 	}
 
-	private void revealGridNeighbors(int x, int y) {
-		for (int col = Math.max(0, x - 1); col < Math.min(width, x + 2); col++) {
-			for (int line = Math.max(0, y - 1); line < Math.min(height, y + 2); line++)
-				revealGrid(col, line);
+	private void revealGridNeighbors(int x, int y,int i) {
+		if(i==0) {
+			for (int col = Math.max(0, x - 1); col < Math.min(width, x + 2); col++) {
+				for (int line = Math.max(0, y - 1); line < Math.min(height, y + 2); line++)
+					revealGrid(col, line);
+			}
+		}
+		else{
+			for (int col = Math.max(0, x - 1); col < Math.min(width, x + 2); col++) {
+				for (int line = Math.max(0, y - 1); line < Math.min(height, y + 2); line++)
+					squareRevealGrid(col, line);
+			}
 		}
 	}
 
-	private void battleGridNeighbors(int x, int y) {
-		for (int col = Math.max(0, x - 1); col < Math.min(width, x + 2); col++) {
-			for (int line = Math.max(0, y - 1); line < Math.min(height, y + 2); line++)
-				revealGrid1(col, line);
-		}
-	}
-
-	private void revealGrid1(int x, int y) {
+	private void squareRevealGrid(int x, int y) {
 		if (states[x][y] == COVERED && !battleFinished) {
 			if (firstPlay) {
 				firstPlay = false;
 				placeMines(x, y);
-				placePortion(x, y);
+				placePortion();
 			}
 			int minesAround = countMinesAround(x, y);
 			states[x][y] = minesAround;
 
 			if (minesAround == 0) {
-				revealGrid1(x, y);
+				squareRevealGrid(x, y);
 			} else {
 				battleRevealGrid(x, y);
 			}
@@ -256,7 +257,7 @@ public class Minefield {
 		}
 	}
 
-	private void placePortion(int plX, int plY) {
+	private void placePortion() {
 		for (int i = 0; i < numPortion; i++) {
 			int x = 0;
 			int y = 0;
