@@ -7,12 +7,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SetFreeMode extends JFrame {
+public class SetFreeMode {
 
     JTextField row = new JTextField(2);
     JTextField col = new JTextField(2);
     JTextField mines = new JTextField(2);
-
 
 
     public int parseInt(String str) {
@@ -25,16 +24,18 @@ public class SetFreeMode extends JFrame {
     }
 
     public SetFreeMode() {
+
+        JFrame frame = new JFrame("Hello Program");
+        frame.setPreferredSize(new Dimension(300, 150));
+
         JButton okBtn = new JButton("OK");
-        setTitle("Set your own game");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         JPanel gamePanel = new JPanel();
         gamePanel.setLayout(new GridLayout(3, 2));
 
         JPanel okBtnPanel = new JPanel();
 
-        Container gameContainer = getContentPane();
+        Container gameContainer = frame.getContentPane();
 
         gamePanel.add(new JLabel("Row"));
         gamePanel.add(row);
@@ -49,9 +50,8 @@ public class SetFreeMode extends JFrame {
 
         gameContainer.add(okBtnPanel, BorderLayout.SOUTH);
 
-        setSize(300, 150);
-        setResizable(false);
-        setVisible(true);
+        frame.pack();
+        frame.setVisible(true);
 
     }
 
@@ -59,7 +59,6 @@ public class SetFreeMode extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            dispose();
             int numOfRow = parseInt(row.getText());
             int numOfCol = parseInt(col.getText());
             int numOfMines = parseInt(mines.getText());
