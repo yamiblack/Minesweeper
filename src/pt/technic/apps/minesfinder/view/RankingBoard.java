@@ -14,37 +14,37 @@ public class RankingBoard extends JFrame {
 
 		setTitle("Ranking Board");
 
-		GridLayout grid = new GridLayout(21, 4);
-		grid.setVgap(5);
+		GridLayout gameGrid = new GridLayout(21, 4);
+		gameGrid.setVgap(5);
 
-		Container c = getContentPane();
-		c.setLayout(grid);
+		Container gameContainer = getContentPane();
+		gameContainer.setLayout(gameGrid);
 
-		c.add(new JLabel("Ranking"));
-		c.add(new JLabel("Easy"));
-		c.add(new JLabel("Mdeium"));
-		c.add(new JLabel("Hard"));
+		gameContainer.add(new JLabel("Ranking"));
+		gameContainer.add(new JLabel("Easy"));
+		gameContainer.add(new JLabel("Mdeium"));
+		gameContainer.add(new JLabel("Hard"));
 
 		ArrayList<Player> easy = PlayerCache.getInstance().getListByLevel(Mode.EASY);
 		ArrayList<Player> med = PlayerCache.getInstance().getListByLevel(Mode.MED);
 		ArrayList<Player> hard = PlayerCache.getInstance().getListByLevel(Mode.HARD);
 
 		for (int i = 0; i < maxRankingShow; i++) {
-			c.add(new JLabel(String.valueOf(i + 1)));
+			gameContainer.add(new JLabel(String.valueOf(i + 1)));
 			if (easy.size() > i) {
-				c.add(new JLabel(easy.get(i).getName() + " : " + easy.get(i).getScore()));
+				gameContainer.add(new JLabel(easy.get(i).getName() + " : " + easy.get(i).getScore()));
 			} else {
-				c.add(new JLabel(""));
+				gameContainer.add(new JLabel(""));
 			}
 			if (med.size() > i) {
-				c.add(new JLabel(med.get(i).getName() + " : " + med.get(i).getScore()));
+				gameContainer.add(new JLabel(med.get(i).getName() + " : " + med.get(i).getScore()));
 			} else {
-				c.add(new JLabel(""));
+				gameContainer.add(new JLabel(""));
 			}
 			if (hard.size() > i) {
-				c.add(new JLabel(hard.get(i).getName() + " : " + hard.get(i).getScore()));
+				gameContainer.add(new JLabel(hard.get(i).getName() + " : " + hard.get(i).getScore()));
 			} else {
-				c.add(new JLabel(""));
+				gameContainer.add(new JLabel(""));
 			}
 		}
 
