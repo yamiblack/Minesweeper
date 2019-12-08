@@ -12,7 +12,6 @@ import java.io.File;
 public class Main extends JFrame {
 
 	public static final String FILE_NAME = System.getProperty("user.home") + File.separator + "minesfinder.txt";
-	// 파일 경로를 명시
 
 	public static void main(String args[]) throws ClassNotFoundException, InstantiationException,
 			IllegalAccessException, UnsupportedLookAndFeelException {
