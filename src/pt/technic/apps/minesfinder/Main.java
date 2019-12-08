@@ -85,7 +85,7 @@ public class Main extends JFrame {
 		
 		panelBtns.setLayout(new GridLayout(2, 0));
 
-		setBtn("Easy", e -> new GameWindow(new Minefield(2, 2, 1), Mode.EASY).setVisible(true), panelBtns, true);
+		setBtn("Easy", e -> new GameWindow(new Minefield(9, 9, 10), Mode.EASY).setVisible(true), panelBtns, true);
 		setBtn("Medium", e -> new GameWindow(new Minefield(16, 16, 40), Mode.MED).setVisible(true), panelBtns, true);
 		setBtn("Hard", e -> new GameWindow(new Minefield(16, 30, 90), Mode.HARD).setVisible(true), panelBtns, true);
 		setBtn("Battle", e -> new BattleMode(new Minefield(9, 9, 10), new Minefield(9, 9, 10)).setVisible(true),

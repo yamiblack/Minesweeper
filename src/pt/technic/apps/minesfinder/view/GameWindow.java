@@ -20,6 +20,7 @@ import pt.technic.apps.minesfinder.util.Bgm;
 import pt.technic.apps.minesfinder.util.RecordManager;
 import pt.technic.apps.minesfinder.util.ThreadPool;
 
+
 /**
  *
  * @author Gabriel Massadas
@@ -47,8 +48,8 @@ public class GameWindow extends javax.swing.JFrame {
 		initComponents();
 		this.minefield = minefield;
 		this.mode = mode;
-
 		initStatusBar();
+
 		mainbgm.start();
 		buttons = new ButtonMinefield[minefield.getWidth()][minefield.getHeight()];
 		getContentPane().setLayout(new GridLayout(minefield.getWidth(), minefield.getHeight()));
@@ -98,11 +99,11 @@ public class GameWindow extends javax.swing.JFrame {
 					ButtonMinefield botao = (ButtonMinefield) e.getSource();
 					int x = botao.getCol();
 					int y = botao.getLine();
-					if (minefield.getGridState(x, y) == Minefield.COVERED) {
+					if (minefield.getGridState(x, y) == minefield.COVERED) {
 						minefield.setMineMarked(x, y);
-					} else if (minefield.getGridState(x, y) == Minefield.MARKED) {
+					} else if (minefield.getGridState(x, y) == minefield.MARKED) {
 						minefield.setMineQuestion(x, y);
-					} else if (minefield.getGridState(x, y) == Minefield.QUESTION) {
+					} else if (minefield.getGridState(x, y) == minefield.QUESTION) {
 						minefield.setMineCovered(x, y);
 					}
 					updateButtonsStates();
@@ -111,22 +112,18 @@ public class GameWindow extends javax.swing.JFrame {
 
 			@Override
 			public void mouseClicked(MouseEvent me) {
-				throw new UnsupportedOperationException();
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent me) {
-				throw new UnsupportedOperationException();
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent me) {
-				throw new UnsupportedOperationException();
 			}
 
 			@Override
 			public void mouseExited(MouseEvent me) {
-				throw new UnsupportedOperationException();
 			}
 		};
 
@@ -170,6 +167,7 @@ public class GameWindow extends javax.swing.JFrame {
 				getContentPane().add(buttons[x][y]);
 			}
 		}
+
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
