@@ -121,7 +121,7 @@ public class GameWindow extends javax.swing.JFrame {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_R) {
                     int result = JOptionPane.showConfirmDialog
-                            (null, "Try again?", "Lost!", JOptionPane.YES_NO_OPTION);
+                            (null, "Try again?", "Really?", JOptionPane.YES_NO_OPTION);
                     if (result == JOptionPane.YES_OPTION) {
                         minefield.setGameFinished(true);
                         gameStart = false;
