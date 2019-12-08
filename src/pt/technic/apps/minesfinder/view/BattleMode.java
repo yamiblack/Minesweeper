@@ -140,24 +140,34 @@ public class BattleMode extends javax.swing.JFrame {
 	private void find(int x, int y, int i) {
 		if (i == 0) {
 			battleBtn(x, y, 0);
+			buttons2p[x][y].setFocusable(true);
 			buttons2p[x][y].requestFocus();
 				for (x = 0; x < minefield1p.getWidth(); x++) {
 					for (y = 0; y < minefield1p.getHeight(); y++) {
-						buttons1p[x][y].setFocusable(false);
-						buttons2p[x][y].setFocusable(true);
+						setButtonFocus2p(x,y);
 					}
 				}
 		}
 		else{
 			battleBtn(x, y, 1);
+			buttons1p[x][y].setFocusable(true);
 			buttons1p[x][y].requestFocus();
 			for (x = 0; x < minefield1p.getWidth(); x++) {
 				for (y = 0; y < minefield1p.getHeight(); y++) {
-					buttons2p[x][y].setFocusable(false);
-					buttons1p[x][y].setFocusable(true);
+					setButtonFocus1p(x,y);
 				}
 			}
 		}
+	}
+
+	private void setButtonFocus1p(int x, int y){
+		buttons2p[x][y].setFocusable(false);
+		buttons1p[x][y].setFocusable(true);
+	}
+
+	private void setButtonFocus2p(int x, int y){
+		buttons1p[x][y].setFocusable(false);
+		buttons2p[x][y].setFocusable(true);
 	}
 
 	private void battleWindow(ButtonMinefield[][] buttons1p, ButtonMinefield[][] buttons2p){
