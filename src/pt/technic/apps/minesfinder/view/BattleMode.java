@@ -108,13 +108,10 @@ public class BattleMode extends javax.swing.JFrame {
 
 			@Override
 			public void keyTyped(KeyEvent ke) {
-				throw new UnsupportedOperationException();
 			}
 
 			@Override
 			public void keyReleased(KeyEvent ke) {
-				throw new UnsupportedOperationException();
-
 			}
 		};
 

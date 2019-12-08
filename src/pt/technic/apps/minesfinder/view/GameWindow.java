@@ -138,12 +138,10 @@ public class GameWindow extends javax.swing.JFrame {
 
 			@Override
 			public void keyTyped(KeyEvent ke) {
-				throw new UnsupportedOperationException();
 			}
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-				throw new UnsupportedOperationException();
 			}
 		};
 
