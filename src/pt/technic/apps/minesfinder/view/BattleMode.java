@@ -1,12 +1,14 @@
 package pt.technic.apps.minesfinder.view;
 
-import javax.swing.*;
-
 import pt.technic.apps.minesfinder.util.Bgm;
 import pt.technic.apps.minesfinder.util.ThreadPool;
 
+import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class BattleMode extends javax.swing.JFrame {
 	private ButtonMinefield[][] buttons1p;
@@ -42,8 +44,7 @@ public class BattleMode extends javax.swing.JFrame {
 		battleBgm.start();
 
 		buttons1p = new ButtonMinefield[minefield1p.getWidth()][minefield1p.getHeight()];
-		buttons2p = new ButtonMinefield[minefield2p.getWidth()][minefield2p
-				.getHeight()];
+		buttons2p = new ButtonMinefield[minefield2p.getWidth()][minefield2p.getHeight()];
 
 		KeyListener keyListener = new KeyListener() {
 			@Override
@@ -107,10 +108,13 @@ public class BattleMode extends javax.swing.JFrame {
 
 			@Override
 			public void keyTyped(KeyEvent ke) {
+				throw new UnsupportedOperationException();
 			}
 
 			@Override
 			public void keyReleased(KeyEvent ke) {
+				throw new UnsupportedOperationException();
+
 			}
 		};
 

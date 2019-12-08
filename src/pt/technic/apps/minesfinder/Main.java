@@ -1,29 +1,13 @@
 package pt.technic.apps.minesfinder;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.event.ActionListener;
-import java.io.File;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-
 import pt.technic.apps.minesfinder.entity.Mode;
 import pt.technic.apps.minesfinder.util.RecordManager;
-import pt.technic.apps.minesfinder.view.BattleMode;
-import pt.technic.apps.minesfinder.view.GameWindow;
-import pt.technic.apps.minesfinder.view.Minefield;
-import pt.technic.apps.minesfinder.view.RankingBoard;
-import pt.technic.apps.minesfinder.view.SetFreeMode;
+import pt.technic.apps.minesfinder.view.*;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.io.File;
 
 /**
  *
@@ -85,7 +69,7 @@ public class Main extends JFrame {
 		
 		panelBtns.setLayout(new GridLayout(2, 0));
 
-		setBtn("Easy", e -> new GameWindow(new Minefield(9, 9, 10), Mode.EASY).setVisible(true), panelBtns, true);
+		setBtn("Easy", e -> new GameWindow(new Minefield(10, 10, 1), Mode.EASY).setVisible(true), panelBtns, true);
 		setBtn("Medium", e -> new GameWindow(new Minefield(16, 16, 40), Mode.MED).setVisible(true), panelBtns, true);
 		setBtn("Hard", e -> new GameWindow(new Minefield(16, 30, 90), Mode.HARD).setVisible(true), panelBtns, true);
 		setBtn("Battle", e -> new BattleMode(new Minefield(9, 9, 10), new Minefield(9, 9, 10)).setVisible(true),

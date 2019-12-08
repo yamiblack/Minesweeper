@@ -2,10 +2,6 @@ package pt.technic.apps.minesfinder.view;
 
 import java.util.Random;
 
-/**
- *
- * @author Gabriel Massadas
- */
 public class Minefield {
 
 	public static final int EMPTY = 0;
@@ -14,11 +10,11 @@ public class Minefield {
 	public static final int QUESTION = 10;
 	public static final int MARKED = 11;
 	public static final int BUSTED = 12;
-	public static final int PORTIONED = 13;
+	public static final int potionED = 13;
 
 	private boolean[][] mines;
 	private int[][] states;
-	private boolean[][] portion;
+	private boolean[][] potion;
 	private int width;
 	private int height;
 	private int numMines;
@@ -33,7 +29,7 @@ public class Minefield {
 	private boolean battleFinished;
 	private boolean battleDefeated;
 
-	private int numPortion;
+	private int numpotion;
 	private int life;
 
 	public Minefield(int width, int height, int numMines) {
@@ -47,7 +43,7 @@ public class Minefield {
 		this.numMarkChances = numMines;
 		mines = new boolean[width][height];
 		states = new int[width][height];
-		portion = new boolean[width][height];
+		potion = new boolean[width][height];
 
 		random = new Random();
 
@@ -57,7 +53,7 @@ public class Minefield {
 		gameFinished = false;
 		battleDefeated = false;
 
-		numPortion = 3;
+		numpotion = 3;
 		life = 15;
 		leftmine = numMines;
 
@@ -108,7 +104,7 @@ public class Minefield {
 			if (firstPlay) {
 				firstPlay = false;
 				placeMines(x, y);
-				placePortion();
+				placepotion();
 			}
 
 			int minesAround = countMinesAround(x, y);
@@ -127,9 +123,9 @@ public class Minefield {
 					battleWin = true;
 					battleFinished = true;
 				}
-			} else if (portion[x][y]) {
+			} else if (potion[x][y]) {
 				life++;
-				states[x][y] =PORTIONED;
+				states[x][y] =potionED;
 			}
 
 			else if (!mines[x][y]) {
@@ -163,7 +159,7 @@ public class Minefield {
 			if (firstPlay) {
 				firstPlay = false;
 				placeMines(x, y);
-				placePortion();
+				placepotion();
 			}
 			int minesAround = countMinesAround(x, y);
 			states[x][y] = minesAround;
@@ -257,16 +253,16 @@ public class Minefield {
 		}
 	}
 
-	private void placePortion() {
-		for (int i = 0; i < numPortion; i++) {
+	private void placepotion() {
+		for (int i = 0; i < numpotion; i++) {
 			int x = 0;
 			int y = 0;
 			do {
 				x = random.nextInt(width);
 				y = random.nextInt(height);
 
-			} while (mines[x][y] || portion[x][y]);
-			portion[x][y] = true;
+			} while (mines[x][y] || potion[x][y]);
+			potion[x][y] = true;
 		}
 	}
 

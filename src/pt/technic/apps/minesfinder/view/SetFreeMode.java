@@ -1,80 +1,69 @@
 package pt.technic.apps.minesfinder.view;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
-import java.awt.GridLayout;
+import pt.technic.apps.minesfinder.entity.Mode;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-import pt.technic.apps.minesfinder.entity.Mode;
-import pt.technic.apps.minesfinder.util.Bgm;
-
 public class SetFreeMode extends JFrame {
 
-	int numOfRow = 0;
-	int numOfCol = 0;
-	int numOfMines = 0;
+    JTextField row = new JTextField(2);
+    JTextField col = new JTextField(2);
+    JTextField mines = new JTextField(2);
 
-	JTextField row = new JTextField(2);
-	JTextField col = new JTextField(2);
-	JTextField mines = new JTextField(2);
+    public int parseInt(String str) {
+        try {
+            return Integer.parseInt(str);
+        } catch (NumberFormatException e) {
 
-	public int parseInt(String str) {
-		try {
-			return Integer.parseInt(str);
-		} catch (NumberFormatException e) {
-		}
-		return 0;
-	}
+        }
+        return 0;
+    }
 
-	public SetFreeMode() {
-		JButton btn = new JButton("OK");
-		setTitle("Set your own game");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public SetFreeMode() {
+        JButton okBtn = new JButton("OK");
+        setTitle("Set your own game");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-		JPanel p1 = new JPanel();
-		p1.setLayout(new GridLayout(3, 2));
+        JPanel gamePanel = new JPanel();
+        gamePanel.setLayout(new GridLayout(3, 2));
 
-		JPanel p2 = new JPanel();
+        JPanel okBtnPanel = new JPanel();
 
-		Container c = getContentPane();
+        Container gameContainer = getContentPane();
 
-		p1.add(new JLabel("Row"));
-		p1.add(row);
-		p1.add(new JLabel("Column"));
-		p1.add(col);
-		p1.add(new JLabel("Mines"));
-		p1.add(mines);
-		c.add(p1, BorderLayout.CENTER);
+        gamePanel.add(new JLabel("Row"));
+        gamePanel.add(row);
+        gamePanel.add(new JLabel("Column"));
+        gamePanel.add(col);
+        gamePanel.add(new JLabel("Mines"));
+        gamePanel.add(mines);
+        gameContainer.add(gamePanel, BorderLayout.CENTER);
 
-		p2.add(btn);
-		btn.addActionListener(new FreeMode());
+        okBtnPanel.add(okBtn);
+        okBtn.addActionListener(new FreeMode());
 
-		c.add(p2, BorderLayout.SOUTH);
+        gameContainer.add(okBtnPanel, BorderLayout.SOUTH);
 
-		setSize(300, 150);
-		setResizable(false);
-		setVisible(true);
-		
-	}
+        setSize(300, 150);
+        setResizable(false);
+        setVisible(true);
 
-	public class FreeMode implements ActionListener {
+    }
 
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			dispose();
-			int numOfRow = parseInt(row.getText());
-			int numOfCol = parseInt(col.getText());
-			int numOfMines = parseInt(mines.getText());
+    public class FreeMode implements ActionListener {
 
-			new GameWindow(new Minefield(numOfRow, numOfCol, numOfMines), Mode.FREE).setVisible(true);
-		}
-	}
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            dispose();
+            int numOfRow = parseInt(row.getText());
+            int numOfCol = parseInt(col.getText());
+            int numOfMines = parseInt(mines.getText());
+
+            new GameWindow(new Minefield(numOfRow, numOfCol, numOfMines), Mode.FREE).setVisible(true);
+        }
+    }
 
 }

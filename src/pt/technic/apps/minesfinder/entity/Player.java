@@ -1,14 +1,10 @@
 package pt.technic.apps.minesfinder.entity;
 
+import pt.technic.apps.minesfinder.util.PlayerListener;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import pt.technic.apps.minesfinder.util.PlayerListener;
-
-/**
- *
- * @author Gabriel Massadas
- */
 public class Player implements Serializable {
 
 	private String name;

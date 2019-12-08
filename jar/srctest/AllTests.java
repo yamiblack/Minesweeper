@@ -19,7 +19,6 @@
 
 import javazoom.jl.decoder.BitstreamTest;
 import javazoom.jl.player.jlpTest;
-import junit.framework.Test;
 import junit.framework.TestSuite;
 
 /**
@@ -27,7 +26,7 @@ import junit.framework.TestSuite;
  */
 public class AllTests
 {
-	public static Test suite()
+	public static TestSuite suite()
 	{
 		TestSuite suite = new TestSuite("Test for javazoom.jl.decoder");
 		//$JUnit-BEGIN$

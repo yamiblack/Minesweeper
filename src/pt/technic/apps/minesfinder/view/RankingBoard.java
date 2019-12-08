@@ -1,15 +1,12 @@
 package pt.technic.apps.minesfinder.view;
 
-import java.awt.Container;
-import java.awt.GridLayout;
-import java.util.ArrayList;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-
 import pt.technic.apps.minesfinder.entity.Mode;
 import pt.technic.apps.minesfinder.entity.Player;
 import pt.technic.apps.minesfinder.entity.PlayerCache;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
 
 public class RankingBoard extends JFrame {
 	public RankingBoard() {
