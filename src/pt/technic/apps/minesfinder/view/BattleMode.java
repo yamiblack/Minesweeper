@@ -76,7 +76,7 @@ public class BattleMode extends javax.swing.JFrame {
 						break;
 
 					case KeyEvent.VK_F:
-						if (e.getKeyCode() == KeyEvent.VK_F && (minefield1p.getGridState(x, y) == Minefield.COVERED) && !minefield1p.isBattleDefeated()) {
+						if (minefield1p.getGridState(x, y) == Minefield.COVERED && !minefield1p.isBattleDefeated()) {
 							find(x,y,0);
 						}
 						break;
@@ -97,7 +97,7 @@ public class BattleMode extends javax.swing.JFrame {
 							buttons2p[x + 1][y].requestFocus();
 						break;
 					case KeyEvent.VK_ENTER:
-						if ((minefield2p.getGridState(x, y) == Minefield.COVERED) && !minefield2p.isBattleDefeated()) {
+						if (minefield2p.getGridState(x, y) == Minefield.COVERED && !minefield2p.isBattleDefeated()) {
 							find(x,y,1);
 						}
 						break;
@@ -170,7 +170,6 @@ public class BattleMode extends javax.swing.JFrame {
 	}
 
 	private void battleWindow(ButtonMinefield[][] buttons1p, ButtonMinefield[][] buttons2p){
-
 		gameWindow.setLayout(new FlowLayout());
 		gameWindow.setPreferredSize(new Dimension(1010, 560));
 
@@ -195,7 +194,6 @@ public class BattleMode extends javax.swing.JFrame {
 				panel2p.add(buttons2p[x][y]);
 			}
 		}
-
 		statusBar.add(status1p);
 		statusBar.add(status2p);
 
@@ -206,7 +204,6 @@ public class BattleMode extends javax.swing.JFrame {
 		gameWindow.add(userPanel);
 
 		setContentPane(gameWindow);
-
 		pack();
 	}
 
@@ -274,6 +271,7 @@ public class BattleMode extends javax.swing.JFrame {
 
 		setVisible(false);
 	}
+
 	private void gameDefeatEffect(int x, int y) {
 		battleBgm.close();
 		dieEffect.start();
