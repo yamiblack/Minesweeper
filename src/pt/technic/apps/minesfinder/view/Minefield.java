@@ -104,7 +104,7 @@ public class Minefield {
 			if (firstPlay) {
 				firstPlay = false;
 				placeMines(x, y);
-				placepotion();
+				placePotion();
 			}
 
 			int minesAround = countMinesAround(x, y);
@@ -159,7 +159,7 @@ public class Minefield {
 			if (firstPlay) {
 				firstPlay = false;
 				placeMines(x, y);
-				placepotion();
+				placePotion();
 			}
 			int minesAround = countMinesAround(x, y);
 			states[x][y] = minesAround;
@@ -253,7 +253,7 @@ public class Minefield {
 		}
 	}
 
-	private void placepotion() {
+	private void placePotion() {
 		for (int i = 0; i < numpotion; i++) {
 			int x = 0;
 			int y = 0;
@@ -286,11 +286,11 @@ public class Minefield {
 		return numMines;
 	}
 
-	public int getleft() {
+	public int getLeft() {
 		return leftmine;
 	}
 
-	public int getnumlife() {
+	public int getNumLife() {
 		return life;
 	}
 

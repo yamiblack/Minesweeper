@@ -5,10 +5,8 @@ import pt.technic.apps.minesfinder.util.ThreadPool;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
+
 
 public class BattleMode extends javax.swing.JFrame {
 	private ButtonMinefield[][] buttons1p;
@@ -208,15 +206,15 @@ public class BattleMode extends javax.swing.JFrame {
 	}
 
 	private void initStatusBar() {
-		JLabel timeLabel = new JLabel("Player1 Lifes : " + this.minefield1p.getnumlife() + " / Left Mines : "
-				+ this.minefield1p.getleft() + "         " + "Player2 Lifes : " + this.minefield2p.getnumlife()
-				+ " / Left Mines : " + this.minefield1p.getleft()); // �젅�씠釉� �깮�꽦
+		JLabel timeLabel = new JLabel("Player1 Lifes : " + this.minefield1p.getNumLife() + " / Left Mines : "
+				+ this.minefield1p.getLeft() + "         " + "Player2 Lifes : " + this.minefield2p.getNumLife()
+				+ " / Left Mines : " + this.minefield1p.getLeft()); // �젅�씠釉� �깮�꽦
 
 		ThreadPool.timeThreadPool.submit(() -> {
 			while (gameStart) {
-				timeLabel.setText("Player1 Lifes : " + this.minefield1p.getnumlife() + " / Left Mines : "
-						+ this.minefield1p.getleft() + "         " + "Player2 Lifes : " + this.minefield2p.getnumlife()
-						+ " / Left Mines : " + this.minefield2p.getleft()); // �젅�씠釉� �깮�꽦
+				timeLabel.setText("Player1 Lifes : " + this.minefield1p.getNumLife() + " / Left Mines : "
+						+ this.minefield1p.getLeft() + "         " + "Player2 Lifes : " + this.minefield2p.getNumLife()
+						+ " / Left Mines : " + this.minefield2p.getLeft()); // �젅�씠釉� �깮�꽦
 			}
 		});
 
@@ -240,7 +238,6 @@ public class BattleMode extends javax.swing.JFrame {
 
 			}
 		}
-
 		else {
 			minefield2p.battleRevealGrid(x, y);
 			updateButtonsStates2p();
