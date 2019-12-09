@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class SetFreeMode {
 
@@ -18,7 +20,7 @@ public class SetFreeMode {
         try {
             return Integer.parseInt(str);
         } catch (NumberFormatException e) {
-            e.printStackTrace();
+            Logger.getLogger(SetFreeMode.class.getName()).log(Level.WARNING, null, e);
         }
         return 0;
     }
