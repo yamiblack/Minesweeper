@@ -237,7 +237,7 @@ public class GameWindow extends javax.swing.JFrame {
             }
 
         } catch (NullPointerException npe) {
-            Logger.getLogger(GameWindow.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(GameWindow.class.getName()).log(Level.SEVERE, null, npe);
         }
 
 
