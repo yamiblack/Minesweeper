@@ -13,6 +13,8 @@ import java.awt.event.*;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class GameWindow extends javax.swing.JFrame {
@@ -73,7 +75,7 @@ public class GameWindow extends javax.swing.JFrame {
 
                         }
                     } catch (NullPointerException npe) {
-                        npe.printStackTrace();
+                        Logger.getLogger(GameWindow.class.getName()).log(Level.SEVERE, null, e);
                     }
 
                     setVisible(false);
@@ -235,7 +237,7 @@ public class GameWindow extends javax.swing.JFrame {
             }
 
         } catch (NullPointerException npe) {
-
+            Logger.getLogger(GameWindow.class.getName()).log(Level.SEVERE, null, e);
         }
 
 

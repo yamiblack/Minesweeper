@@ -11,6 +11,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.StringJoiner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RecordManager {
 
@@ -75,7 +77,7 @@ public class RecordManager {
 					playerList.add(player);
 				}
 			} catch (Exception e) {
-				e.printStackTrace();
+				Logger.getLogger(RecordManager.class.getName()).log(Level.WARNING, null, e);
 			}
 			if (i == 0)
 				PlayerCache.getInstance().setListByLevel(Mode.EASY, playerList);
@@ -115,7 +117,7 @@ public class RecordManager {
 			writer.write(contents);
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			Logger.getLogger(RecordManager.class.getName()).log(Level.WARNING, null, e);
 		}
 	}
 
